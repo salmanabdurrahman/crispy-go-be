@@ -35,12 +35,12 @@ class OrdersChart extends ChartWidget
                 [
                     'label' => 'Orders',
                     'data' => $orders->map(fn(TrendValue $value) => $value->aggregate),
-                    'backgroundColor' => '#34d399', // hijau
+                    'backgroundColor' => '#34d399', // green
                 ],
                 [
                     'label' => 'Items Sold',
                     'data' => $items->map(fn(TrendValue $value) => $value->aggregate),
-                    'backgroundColor' => '#f87171', // merah
+                    'backgroundColor' => '#f87171', // red
                 ],
             ],
             'labels' => $orders->map(fn(TrendValue $value) => $value->date),
@@ -49,6 +49,6 @@ class OrdersChart extends ChartWidget
 
     protected function getType(): string
     {
-        return 'pie';
+        return 'bar';
     }
 }
