@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->string('slug')->unique();
             $table->text('excerpt');
             $table->text('content');
+            $table->string('image');
             $table->enum('type', ['product', 'tips', 'news', 'promotions', 'review', 'tutorial', 'interview', 'opinion', 'press-release', 'announcement'])->default('tips');
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->timestamp('published_at')->nullable();

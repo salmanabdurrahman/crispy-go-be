@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->string('name');
             $table->decimal('price', 10, 2);
             $table->text('description');
+            $table->string('image');
             $table->boolean('is_bestseller')->default(false);
             $table->enum('category', ['ayam', 'tahu', 'minuman', 'paket keluarga', 'paket hemat'])->default('ayam');
             $table->softDeletes();

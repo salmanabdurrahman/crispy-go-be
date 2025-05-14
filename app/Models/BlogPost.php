@@ -22,21 +22,22 @@ class BlogPost extends Model
         'published_at'
     ];
 
-    public function setTitleAttribute(string $value): void
+    protected static function booted()
     {
-        $this->attributes['title'] = $value;
-        $this->attributes['slug'] = Str::slug($value);
-    }
+        static::creating(function ($post) {
+            $post->slug = Str::slug($post->title);
+            $post->excerpt = Str::limit(strip_tags($post->content), 200);
+        });
 
-    public function setExcerptAttribute(string $value): void
-    {
-        $this->attributes['content'] = $value;
-        $this->attributes['excerpt'] = Str::limit(strip_tags($value), 200);
+        static::saving(function ($post) {
+            $post->slug = Str::slug($post->title);
+            $post->excerpt = Str::limit(strip_tags($post->content), 200);
+        });
     }
 
     public function author(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 }
 

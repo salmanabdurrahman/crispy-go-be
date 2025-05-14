@@ -20,6 +20,11 @@ class Order extends Model
         'deleted_at'
     ];
 
+    public function getTotalPriceAttribute()
+    {
+        return $this->items->sum(fn($item) => $item->price * $item->quantity);
+    }
+
     public function items(): HasMany
     {
         return $this->hasMany(OrderItem::class);
