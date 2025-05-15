@@ -10,7 +10,7 @@ use Flowframe\Trend\TrendValue;
 
 class OrdersChart extends ChartWidget
 {
-    protected static ?string $heading = 'Orders & Items Sold';
+    protected static ?string $heading = 'Pesanan dan Item Terjual';
 
     protected function getData(): array
     {
@@ -33,12 +33,12 @@ class OrdersChart extends ChartWidget
         return [
             'datasets' => [
                 [
-                    'label' => 'Orders',
+                    'label' => 'Pesanan',
                     'data' => $orders->map(fn(TrendValue $value) => $value->aggregate),
                     'backgroundColor' => '#34d399', // green
                 ],
                 [
-                    'label' => 'Items Sold',
+                    'label' => 'Item Terjual',
                     'data' => $items->map(fn(TrendValue $value) => $value->aggregate),
                     'backgroundColor' => '#f87171', // red
                 ],

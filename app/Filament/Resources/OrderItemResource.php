@@ -17,20 +17,22 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class OrderItemResource extends Resource
 {
     protected static ?string $model = OrderItem::class;
-
+    protected static ?string $navigationLabel = 'Item Pesanan';
     protected static ?string $navigationIcon = 'heroicon-o-clipboard';
-
     protected static ?int $navigationSort = 3;
+    protected static ?string $label = 'Item';
+    protected static ?string $pluralLabel = 'Item Pesanan';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\Select::make('order_id')
-                    ->label('Customer')
+                    ->label('Nama Pemesan')
                     ->relationship('order', 'full_name')
                     ->required(),
                 Forms\Components\Select::make('menu_id')
+                    ->label('Menu')
                     ->relationship('menu', 'name')
                     ->required()
                     ->reactive()
@@ -44,6 +46,7 @@ class OrderItemResource extends Resource
                         }
                     }),
                 Forms\Components\TextInput::make('quantity')
+                    ->label('Jumlah')
                     ->required()
                     ->numeric()
                     ->default(1)
@@ -55,6 +58,7 @@ class OrderItemResource extends Resource
                         }
                     }),
                 Forms\Components\TextInput::make('price')
+                    ->label('Harga')
                     ->required()
                     ->numeric()
                     ->prefix('Rp.')
@@ -68,26 +72,32 @@ class OrderItemResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('order.full_name')
-                    ->label('Customer')
+                    ->label('Nama Pemesan')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('menu.name')
+                    ->label('Menu')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('quantity')
+                    ->label('Jumlah')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('price')
+                    ->label('Harga')
                     ->money('IDR')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('deleted_at')
+                    ->label('Dihapus')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('created_at')
+                    ->label('Dibuat')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
+                    ->label('Diubah')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -140,6 +150,6 @@ class OrderItemResource extends Resource
 
     public static function getNavigationBadgeTooltip(): ?string
     {
-        return 'The number of order items';
+        return 'Jumlah item pesanan';
     }
 }

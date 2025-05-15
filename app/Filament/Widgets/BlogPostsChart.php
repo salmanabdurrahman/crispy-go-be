@@ -7,7 +7,7 @@ use Filament\Widgets\ChartWidget;
 
 class BlogPostsChart extends ChartWidget
 {
-    protected static ?string $heading = 'Blog Posts by Type';
+    protected static ?string $heading = 'Artikel Berdasarkan Tipe';
 
     protected function getData(): array
     {
@@ -20,7 +20,7 @@ class BlogPostsChart extends ChartWidget
         return [
             'datasets' => [
                 [
-                    'label' => 'Blog Posts',
+                    'label' => 'Jumlah Artikel',
                     'data' => $data,
                     'backgroundColor' => [
                         '#ff6384', // red

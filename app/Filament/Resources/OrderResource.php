@@ -4,7 +4,6 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\OrderResource\Pages;
 use App\Filament\Resources\OrderResource\RelationManagers;
-use App\Filament\Resources\OrderResource\RelationManagers\ItemsRelationManager;
 use App\Models\Order;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -17,35 +16,43 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class OrderResource extends Resource
 {
     protected static ?string $model = Order::class;
-
+    protected static ?string $navigationLabel = 'Pesanan';
     protected static ?string $navigationIcon = 'heroicon-o-clipboard-document-list';
-
     protected static ?int $navigationSort = 2;
+    protected static ?string $label = 'Pesanan';
+    protected static ?string $pluralLabel = 'Pesanan';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\TextInput::make('full_name')
+                    ->label('Nama Pemesan')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('email')
+                    ->label('Email')
                     ->email()
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('phone')
+                    ->label('Nomor Telepon')
                     ->tel()
                     ->required()
                     ->maxLength(255),
                 Forms\Components\Textarea::make('address')
+                    ->label('Alamat')
                     ->required(),
                 Forms\Components\Select::make('order_type')
+                    ->label('Tipe Pesanan')
                     ->required()
                     ->options([
                         'pengiriman' => 'Pengiriman',
                         'ambil_di_tempat' => 'Ambil Di Tempat',
-                    ]),
-                Forms\Components\Textarea::make('notes'),
+                    ])
+                    ->searchable(),
+                Forms\Components\Textarea::make('notes')
+                    ->label('Catatan'),
             ]);
     }
 
@@ -54,21 +61,34 @@ class OrderResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('full_name')
+                    ->label('Nama Pemesan')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email')
+                    ->label('Email')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('phone')
+                    ->label('Nomor Telepon')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('order_type'),
+                Tables\Columns\TextColumn::make('address')
+                    ->label('Alamat')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('notes')
+                    ->label('Catatan'),
+                Tables\Columns\TextColumn::make('order_type')
+                    ->label('Tipe Pesanan')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('deleted_at')
+                    ->label('Dihapus')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('created_at')
+                    ->label('Dibuat')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
+                    ->label('Diubah')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -121,6 +141,6 @@ class OrderResource extends Resource
 
     public static function getNavigationBadgeTooltip(): ?string
     {
-        return 'The number of orders';
+        return 'Jumlah pesanan';
     }
 }

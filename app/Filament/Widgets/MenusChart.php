@@ -7,7 +7,7 @@ use Filament\Widgets\ChartWidget;
 
 class MenusChart extends ChartWidget
 {
-    protected static ?string $heading = 'Menus by Category';
+    protected static ?string $heading = 'Menu Berdasarkan Kategori';
 
     protected function getData(): array
     {
@@ -20,7 +20,7 @@ class MenusChart extends ChartWidget
         return [
             'datasets' => [
                 [
-                    'label' => 'Menus',
+                    'label' => 'Jumlah Menu',
                     'data' => $data,
                     'backgroundColor' => [
                         '#facc15', // amber

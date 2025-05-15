@@ -15,41 +15,48 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class MenuResource extends Resource
 {
     protected static ?string $model = Menu::class;
-
+    protected static ?string $navigationLabel = 'Menu';
     protected static ?string $navigationIcon = 'heroicon-o-shopping-bag';
-
     protected static ?int $navigationSort = 1;
+    protected static ?string $label = 'Menu';
+    protected static ?string $pluralLabel = 'Menu';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
+                    ->label('Nama Menu')
                     ->required()
-                    ->minLength(3)
                     ->maxLength(255),
                 Forms\Components\TextInput::make('price')
+                    ->label('Harga')
                     ->required()
                     ->numeric()
                     ->prefix('Rp.'),
                 Forms\Components\FileUpload::make('image')
+                    ->label('Gambar')
                     ->required()
                     ->image()
                     ->disk('public')
                     ->directory('menus'),
                 Forms\Components\Textarea::make('description')
+                    ->label('Deskripsi')
                     ->required(),
                 Forms\Components\Toggle::make('is_bestseller')
+                    ->label('Best Seller')
                     ->required(),
                 Forms\Components\Select::make('category')
+                    ->label('Kategori')
                     ->required()
                     ->options([
-                        'ayam' => 'Ayam',
-                        'tahu' => 'Tahu',
-                        'minuman' => 'Minuman',
-                        'paket keluarga' => 'Paket Keluarga',
-                        'paket hemat' => 'Paket Hemat',
+                        'Ayam' => 'Ayam',
+                        'Tahu' => 'Tahu',
+                        'Minuman' => 'Minuman',
+                        'Paket Keluarga' => 'Paket Keluarga',
+                        'Paket Hemat' => 'Paket Hemat',
                     ])
+                    ->searchable(),
             ]);
     }
 
@@ -58,25 +65,36 @@ class MenuResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
+                    ->label('Nama Menu')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('price')
+                    ->label('Harga')
                     ->money('IDR')
                     ->sortable(),
-                Tables\Columns\ImageColumn::make('image'),
+                Tables\Columns\ImageColumn::make('image')
+                    ->label('Gambar'),
+                Tables\Columns\TextColumn::make('description')
+                    ->label('Deskripsi')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('category')
+                    ->label('Kategori')
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\IconColumn::make('is_bestseller')
+                    ->label('Best Seller')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('deleted_at')
+                    ->label('Dihapus')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('created_at')
+                    ->label('Dibuat')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
+                    ->label('Diubah')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -129,6 +147,6 @@ class MenuResource extends Resource
 
     public static function getNavigationBadgeTooltip(): ?string
     {
-        return 'The number of menus';
+        return 'Jumlah menu';
     }
 }
