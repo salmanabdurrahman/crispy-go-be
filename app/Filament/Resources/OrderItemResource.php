@@ -81,12 +81,10 @@ class OrderItemResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('quantity')
                     ->label('Jumlah')
-                    ->numeric()
-                    ->sortable(),
+                    ->numeric(),
                 Tables\Columns\TextColumn::make('price')
                     ->label('Harga')
-                    ->money('IDR')
-                    ->sortable(),
+                    ->money('IDR'),
                 Tables\Columns\TextColumn::make('deleted_at')
                     ->label('Dihapus')
                     ->dateTime()
@@ -109,6 +107,7 @@ class OrderItemResource extends Resource
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make()
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

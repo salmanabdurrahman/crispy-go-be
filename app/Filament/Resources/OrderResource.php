@@ -72,11 +72,13 @@ class OrderResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('address')
                     ->label('Alamat')
+                    ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('notes')
                     ->label('Catatan'),
                 Tables\Columns\TextColumn::make('order_type')
                     ->label('Tipe Pesanan')
+                    ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('deleted_at')
                     ->label('Dihapus')
@@ -100,6 +102,7 @@ class OrderResource extends Resource
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make()
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
