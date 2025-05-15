@@ -56,6 +56,11 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->spa()
             ->unsavedChangesAlerts()
-            ->databaseTransactions();
+            ->databaseTransactions()
+            ->navigationGroups([
+                'Manajemen Konten',
+                'Transaksi & Order',
+                'Interaksi Pengunjung',
+            ]);
     }
 }
