@@ -18,8 +18,9 @@ class OrderItemResource extends Resource
 {
     protected static ?string $model = OrderItem::class;
     protected static ?string $navigationLabel = 'Item Pesanan';
-    protected static ?string $navigationIcon = 'heroicon-o-clipboard';
-    protected static ?int $navigationSort = 3;
+    protected static ?string $navigationIcon = 'heroicon-o-document-text';
+    protected static ?string $navigationGroup = 'Transaksi & Order';
+    protected static ?int $navigationSort = 2;
     protected static ?string $label = 'Item';
     protected static ?string $pluralLabel = 'Item Pesanan';
 

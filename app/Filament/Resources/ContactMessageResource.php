@@ -17,8 +17,9 @@ class ContactMessageResource extends Resource
 {
     protected static ?string $model = ContactMessage::class;
     protected static ?string $navigationLabel = 'Pesan Kontak';
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-    protected static ?int $navigationSort = 5;
+    protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-left-right';
+    protected static ?string $navigationGroup = 'Interaksi Pengunjung';
+    protected static ?int $navigationSort = 1;
     protected static ?string $label = 'Pesan';
     protected static ?string $pluralLabel = 'Pesan Kontak';
 

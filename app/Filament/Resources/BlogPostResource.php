@@ -19,8 +19,9 @@ class BlogPostResource extends Resource
 {
     protected static ?string $model = BlogPost::class;
     protected static ?string $navigationLabel = 'Postingan Blog';
-    protected static ?string $navigationIcon = 'heroicon-o-document-text';
-    protected static ?int $navigationSort = 4;
+    protected static ?string $navigationIcon = 'heroicon-o-pencil-square';
+    protected static ?string $navigationGroup = 'Manajemen Konten';
+    protected static ?int $navigationSort = 2;
     protected static ?string $label = 'Postingan';
     protected static ?string $pluralLabel = 'Postingan Blog';
 
