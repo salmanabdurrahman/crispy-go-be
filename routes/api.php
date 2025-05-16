@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('api.token')->group(function () {
     Route::get('/menus', [MenuController::class, 'index']);
     Route::get('/blogs', [BlogController::class, 'index']);
+    Route::get('/blogs/{slug}', [BlogController::class, 'show']);
 
     Route::post('/newsletter', [NewsletterController::class, 'store']);
     Route::post('/contact', [ContactController::class, 'store']);

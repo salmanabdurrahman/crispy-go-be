@@ -21,4 +21,25 @@ class BlogController extends Controller
             'data' => $posts
         ], 200);
     }
+
+    public function show(string $slug): JsonResponse
+    {
+        $post = BlogPost::where('slug', '=', $slug)
+            ->whereNotNull('published_at')
+            ->whereNull('deleted_at')
+            ->first();
+
+        if (!$post) {
+            return response()->json([
+                'code' => 404,
+                'message' => 'Blog post not found',
+            ], 404);
+        }
+
+        return response()->json([
+            'code' => 200,
+            'message' => 'Blog post retrieved successfully',
+            'data' => $post
+        ], 200);
+    }
 }
