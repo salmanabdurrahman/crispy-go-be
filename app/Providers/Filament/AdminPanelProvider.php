@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use Filament\Enums\ThemeMode;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -63,6 +64,8 @@ class AdminPanelProvider extends PanelProvider
                 'Manajemen Konten',
                 'Transaksi & Order',
                 'Interaksi Pengunjung',
-            ]);
+            ])
+            ->defaultThemeMode(ThemeMode::Light)
+            ->font('Plus Jakarta Sans');
     }
 }
