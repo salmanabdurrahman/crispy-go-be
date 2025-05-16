@@ -27,6 +27,7 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->domain(env('APP_DASHBOARD_URL', 'dashboard.crispygo.store'))
             ->path('/')
+            ->homeUrl('/')
             ->login()
             ->colors([
                 'primary' => Color::hex('#D14B18'),
