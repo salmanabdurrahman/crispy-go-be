@@ -12,7 +12,7 @@ class NewsletterController extends Controller
     public function store(Request $request): JsonResponse
     {
         $validator = Validator::make($request->all(), [
-            'email' => 'required|email|unique:newsletter_subscriptions,email',
+            'email' => 'required|email|unique:newsletter_subscriptions,email|max:255',
         ]);
 
         if ($validator->fails()) {
